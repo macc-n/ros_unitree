@@ -30,7 +30,7 @@ And open the file `unitree_ros/unitree_gazebo/worlds/stairs.world`. At the end o
 ```
 Please change the path of `building_editor_models/stairs` to the real path on your PC.
 
-Then you can use catkin_make to build:
+Then you can use `catkin_make` to build:
 ```
 cd ~/catkin_ws
 catkin_make
