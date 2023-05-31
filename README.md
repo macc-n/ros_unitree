@@ -19,7 +19,7 @@ sudo apt-get install ros-noetic-controller-interface ros-noetic-gazebo-ros-pkgs 
 
 Clone this repository in the `src` folder of your catkin workspace:
 ```
-git clone <url>
+git clone https://github.com/macc-n/ros_unitree
 ```
 
 And open the file `unitree_ros/unitree_gazebo/worlds/stairs.world`. At the end of the file (line 112):
@@ -37,6 +37,13 @@ catkin_make
 ```
 
 If you face a dependency problem, you can just run `catkin_make` again.
+
+# Robots Description
+The description of robots Go1, A1, Aliengo, and Laikago. Each package includes mesh, urdf and xacro files of robot. Take Go1 for example, you can check the model in Rviz by:
+```
+roslaunch go1_description go1_rviz.launch
+```
+![Go1 in Rviz](./doc/unitree_go1_rviz.png)
 
 # Start the Simulation
 Open a terminal and start Gazebo with a preloaded world:
@@ -72,12 +79,6 @@ The full list of transitions between states available is the following:
 # Detail of Packages
 ## unitree_legged_control:
 It contains the joints controllers for Gazebo simulation, which allows users to control joints with position, velocity and torque. Refer to "[unitree_ros/unitree_controller/src/servo.cpp](https://github.com/unitreerobotics/unitree_ros/blob/master/unitree_controller/src/servo.cpp)" for joint control examples in different modes.
-
-## The description of robots:
-Namely the description of Go1, A1, Aliengo and Laikago. Each package includes mesh, urdf and xacro files of robot. Take Laikago for example, you can check the model in Rviz by:
-```
-roslaunch laikago_description laikago_rviz.launch
-```
 
 ## unitree_gazebo & unitree_controller:
 You can launch the Gazebo simulation with the following command:
