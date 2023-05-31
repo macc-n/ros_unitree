@@ -62,7 +62,7 @@ After starting the controller, the robot will lie on the ground of the simulator
 
 ![Go1 in Trotting state](./doc/unitree_go1_gazebo_2.png)
 
-Now you can press the 'W' 'A' 'S' 'D' key to control the translation of the robot, and press the 'J' 'L' key to control the rotation of the robot. Press the 'Spacebar', the robot will stop and stand on the ground . (If there is no response, you need to click on the terminal opened for starting the controller and then repeat the previous operation).
+Now you can press the 'W', 'A', 'S', 'D' keys to control the translation of the robot, and press the 'J', 'L' keys to control the rotation of the robot. Press the 'Spacebar', the robot will stop and stand on the ground. If there is no response, you need to click on the terminal opened for starting the controller and then repeat the previous operation.
 
 ![Go1 moving](./doc/unitree_go1_gazebo_3.gif)
 
