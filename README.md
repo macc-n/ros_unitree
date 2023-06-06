@@ -45,6 +45,11 @@ roslaunch go1_description go1_rviz.launch
 ```
 ![Go1 in Rviz](./doc/unitree_go1_rviz.png)
 
+If you want to visualize the robot in Rviz while running Gazebo simulation, use this command instead:
+```
+roslaunch go1_description go1_rviz_gazebo.launch
+```
+
 # Start the Simulation
 Open a terminal and start Gazebo with a preloaded world:
 ```
