@@ -14,6 +14,8 @@ The repository contains all the necessary packages to run a simulation with Unit
 
 For ROS Noetic:
 ```
+sudo apt-get update
+sudo apt-get install liblcm-dev
 sudo apt-get install ros-noetic-controller-interface ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control ros-noetic-joint-state-controller ros-noetic-effort-controllers ros-noetic-joint-trajectory-controller
 ```
 
