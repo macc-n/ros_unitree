@@ -101,23 +101,23 @@
     <xacro:leg name="RL" mirror="1"  mirror_dae="True"   front_hind="-1" front_hind_dae="False" />
 
     <xacro:depthCamera camID="1" name="face">
-        <origin rpy="${PI} 0 0" xyz="0.2785 0.0125 0.0167"/>
+        <origin rpy="0 0 0" xyz="0.2785 -0.0125 0.0167"/>
     </xacro:depthCamera>
 
     <xacro:depthCamera camID="2" name="chin">
-        <origin rpy="${PI} ${PI/2} 0" xyz="0.2522 0.0125 -0.0436"/>
+        <origin rpy="0 ${PI/2} 0" xyz="0.2522 -0.0125 -0.0436"/>
     </xacro:depthCamera>
 
     <xacro:depthCamera camID="3" name="left">
-        <origin rpy="${PI} 0.2618 ${PI/2}" xyz="-0.066 0.082 -0.0176"/>
+        <origin rpy="0 0.2618 ${PI/2}" xyz="-0.041 0.082 -0.0176"/>
     </xacro:depthCamera>
 
     <xacro:depthCamera camID="4" name="right">
-        <origin rpy="${PI} 0.2618 ${-PI/2}" xyz="-0.041 -0.082 -0.0176"/>
+        <origin rpy="0 0.2618 ${-PI/2}" xyz="-0.066 -0.082 -0.0176"/>
     </xacro:depthCamera>
 
     <xacro:depthCamera camID="5" name="rearDown">
-        <origin rpy="${PI} ${PI/2} 0" xyz="-0.0825 0.0125 -0.04365"/>
+        <origin rpy="0 ${PI/2} 0" xyz="-0.0825 -0.0125 -0.04365"/>
     </xacro:depthCamera>
 
     <joint name="camera_laserscan_joint_left" type="fixed">
