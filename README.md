@@ -47,17 +47,12 @@ roslaunch go1_description go1_rviz.launch
 ```
 ![Go1 in Rviz](./doc/unitree_go1_rviz.png)
 
-If you want to visualize the robot in Rviz while running Gazebo simulation, use this command instead:
-```
-roslaunch go1_description go1_rviz_gazebo.launch
-```
-
 # Start the Simulation
 Open a terminal and start Gazebo with a preloaded world:
 ```
-roslaunch unitree_gazebo normal.launch rname:=go1 wname:=stairs
+roslaunch unitree_gazebo robot_simulation.launch rname:=go1 wname:=stairs
 ```
-Where the `rname` means robot name, which can be `laikago`, `aliengo`, `a1` or `go1`. The `wname` means world name, which can be `earth`, `space` or `stairs`. And the default value of `rname` is `laikago`, while the default value of `wname` is `earth`. In Gazebo, the robot should be lying on the ground with joints not activated.
+Where the `rname` means robot name, which can be `laikago`, `aliengo`, `a1` or `go1`. The `wname` means world name, which can be `earth`, `space` or `stairs`. And the default value of `rname` is `go1`, while the default value of `wname` is `earth`. In Gazebo, the robot should be lying on the ground with joints not activated.
 
 ![Go1 in Passive state](./doc/unitree_go1_gazebo_1.png)
 
