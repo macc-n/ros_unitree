@@ -3,7 +3,7 @@
     <arg name="rname" default="go1"/>
     <arg name="robot_path" value="(find $(arg rname)_description)"/>
     <arg name="dollar" value="$"/>
-
+    <arg name="rviz" default="true"/>
     <arg name="paused" default="true"/>
     <arg name="use_sim_time" default="true"/>
     <arg name="gui" default="true"/>
@@ -62,9 +62,11 @@
     <node pkg="tf2_ros" type="static_transform_publisher" name="world_to_base" args="0.0 0.0 0.0 0.0 0.0 0.0 /world /base" />
 
     <!-- Rviz -->
-    <include file="$(arg dollar)(find $(arg rname)_description)/launch/$(arg rname)_rviz_gazebo.launch">
-        <arg name="user_debug" value="$(arg user_debug)"/>
-    </include>
+    <group if="$(eval rviz == 'true')">
+        <include file="$(arg dollar)(find $(arg rname)_description)/launch/$(arg rname)_rviz_gazebo.launch">
+            <arg name="user_debug" value="$(arg user_debug)"/>
+        </include>
+    </group>
 
 
 </launch>
