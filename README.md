@@ -50,7 +50,7 @@ roslaunch go1_description go1_rviz.launch
 # Start the Simulation
 Open a terminal and start Gazebo with a preloaded world:
 ```
-roslaunch unitree_gazebo robot_simulation.launch rname:=go1 wname:=stairs
+roslaunch unitree_gazebo robot_simulation.launch rname:=go1 wname:=earth
 ```
 Where the `rname` means robot name, which can be `laikago`, `aliengo`, `a1` or `go1`. The `wname` means world name, which can be `earth`, `space` or `stairs`. And the default value of `rname` is `go1`, while the default value of `wname` is `earth`. In Gazebo, the robot should be lying on the ground with joints not activated.
 
@@ -73,6 +73,17 @@ The full list of transitions between states available is the following:
 * Key '2': Passive/Trotting to FixedStand
 * Key '3': Fixed stand to FreeStand
 * Key '4': FixedStand/FreeStand to Trotting
+
+# Gazebo Worlds
+
+The worlds included in this repository are simple worlds and they should be used for dedug purposes. If you want to add more realistc worlds, you can clone the repository [gazebo_worlds](https://github.com/macc-n/gazebo_worlds).
+After following the instructions for the usage, you can specify which world you want to load with the argument `wname`:
+
+```
+roslaunch unitree_gazebo robot_simulation.launch rname:=go1 wname:=office_small
+```
+
+![World loaded in Gazebo](./doc/unitree_go1_gazebo_world.png)
 
 ---
 

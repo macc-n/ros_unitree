@@ -12,8 +12,11 @@
     <!-- Debug mode will hung up the robot, use "true" or "false" to switch it. -->
     <arg name="user_debug" default="false"/>
     
+    <arg if="$(eval arg('wname') == 'earth' or arg('wname') == 'space' or arg('wname') == 'stairs')" name="world_path" value="$(find unitree_gazebo)/worlds/$(arg wname).world" />
+    <arg unless="$(eval arg('wname') == 'earth' or arg('wname') == 'space' or arg('wname') == 'stairs')" name="world_path" value="$(find gazebo_worlds)/gazebo/worlds/$(arg wname).world" />
+    
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <arg name="world_name" value="$(find unitree_gazebo)/worlds/$(arg wname).world"/>
+        <arg name="world_name" value="$(arg world_path)"/>
         <arg name="debug" value="$(arg debug)"/>
         <arg name="gui" value="$(arg gui)"/>
         <arg name="paused" value="$(arg paused)"/>
