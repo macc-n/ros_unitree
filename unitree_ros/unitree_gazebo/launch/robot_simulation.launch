@@ -11,7 +11,7 @@
     <arg name="debug" default="false"/>
     <!-- Debug mode will hung up the robot, use "true" or "false" to switch it. -->
     <arg name="user_debug" default="false"/>
-    
+
     <arg if="$(eval arg('wname') == 'earth' or arg('wname') == 'space' or arg('wname') == 'stairs')" name="world_path" value="$(find unitree_gazebo)/worlds/$(arg wname).world" />
     <arg unless="$(eval arg('wname') == 'earth' or arg('wname') == 'space' or arg('wname') == 'stairs')" name="world_path" value="$(find gazebo_worlds)/gazebo/worlds/$(arg wname).world" />
     
@@ -59,8 +59,7 @@
     </include>
 
     <!-- World frame -->
-    <node pkg="tf" type="static_transform_publisher" name="world_to_base"
-        args="0.0 0.0 0.0 0.0 0.0 0.0 /world /base 1000" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="world_to_base" args="0.0 0.0 0.0 0.0 0.0 0.0 /world /base" />
 
     <!-- Rviz -->
     <include file="$(arg dollar)(find $(arg rname)_description)/launch/$(arg rname)_rviz_gazebo.launch">
