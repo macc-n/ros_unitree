@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /RobotModel1
+        - /LaserScan1
       Splitter Ratio: 0.5
     Tree Height: 331
   - Class: rviz/Selection
@@ -25,7 +26,7 @@ Panels:
   - Class: rviz/Time
     Name: Time
     SyncMode: 0
-    SyncSource: PointCloud2
+    SyncSource: Image
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -264,7 +265,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        laser_frame:
+        laser_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -496,7 +497,7 @@ Visualization Manager:
       Size (Pixels): 3
       Size (m): 0.029999999329447746
       Style: Flat Squares
-      Topic: /scan
+      Topic: /go1_gazebo/scan
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
@@ -567,5 +568,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1386
-  X: 282
-  Y: 107
+  X: 380
+  Y: 179

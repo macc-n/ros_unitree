@@ -149,4 +149,9 @@
     <xacro:ultraSound name="face">
         <origin rpy="0 0 0" xyz="0.2747 0.0 -0.0088"/>
     </xacro:ultraSound>
+
+    <xacro:lidar parent="trunk">
+        <origin rpy="0 0 0" xyz="0.05 0 0.08"/>
+    </xacro:lidar>
+
 </robot>
