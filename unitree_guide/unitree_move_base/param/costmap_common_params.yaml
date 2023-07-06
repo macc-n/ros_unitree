@@ -1,0 +1,56 @@
+obstacle_range: 2.5
+raytrace_range: 3.0
+footprint: [[-0.25, -0.145], [-0.25, 0.145], [0.25, 0.145], [0.25, -0.145]]
+
+transform_tolerance: 0.5
+resolution: 0.05 
+
+static_map_layer:
+    map_topic: map
+    subscribe_to_updates: true
+
+2d_obstacles_layer:
+  observation_sources: scan
+  scan: {data_type: LaserScan,
+    topic: /go1_gazebo/scan,
+    marking: true,
+    clearing: true}
+  
+  # switch to this modality if you obtain scans from the PointCloud2 data of the three depth cameras 
+  # observation_sources: faceLaserScan leftLaserScan rightLaserScan
+  #   faceLaserScan: {data_type: LaserScan,
+  #     topic: /faceLaserScan,
+  #     marking: true,
+  #     clearing: true,
+  #     expected_update_rate: 3.3}
+  #   leftLaserScan: {data_type: LaserScan,
+  #     topic: /leftLaserScan,
+  #     marking: true,
+  #     clearing: true,
+  #     expected_update_rate: 3.3}
+  #   rightLaserScan: {data_type: LaserScan,
+  #     topic: /rightLaserScan,
+  #     marking: true,
+  #     clearing: true,
+  #     expected_update_rate: 3.3}
+
+3d_obstacles_layer: 
+  observation_sources: depth_face depth_left depth_right
+  depth_face: {data_type: PointCloud2,
+    topic: /cam1/point_cloud_face,
+    min_obstacle_height: 0.1,
+    marking: true,
+    clearing: true}
+  depth_left: {data_type: PointCloud2,
+    topic: /cam3/point_cloud_left,
+    min_obstacle_height: 0.1,
+    marking: true,
+    clearing: true}
+  depth_right: {data_type: PointCloud2,
+    topic: /cam4/point_cloud_right,
+    min_obstacle_height: 0.1,
+    marking: true,
+    clearing: true}
+
+inflation_layer:
+    inflation_radius: 2.0
