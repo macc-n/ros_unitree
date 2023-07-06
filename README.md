@@ -4,7 +4,7 @@ This repository is based on Unitree's repositories and aims to add the compatibi
 * [unitree_ros_to_real](https://github.com/unitreerobotics/unitree_ros_to_real) (only the package `unitree_legged_msgs`)
 * [unitree_guide](https://github.com/unitreerobotics/unitree_guide)
 
-The repository contains all the necessary packages to run a simulation with Unitree robots. You can load robots and joint controllers in Gazebo and you can move the robot in the environment.
+The repository contains all the necessary packages to run a simulation with Unitree robots. You can load robots and joint controllers in Gazebo and you can move the robot in the environment. There are also packages that enable SLAM and navigation functionalities.
 
 # Dependencies
 * [ROS Noetic](https://www.ros.org/)
@@ -16,7 +16,7 @@ For ROS Noetic:
 ```
 sudo apt-get update
 sudo apt-get install liblcm-dev
-sudo apt-get install ros-noetic-controller-interface ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control ros-noetic-joint-state-controller ros-noetic-effort-controllers ros-noetic-joint-trajectory-controller
+sudo apt-get install ros-noetic-controller-interface ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control ros-noetic-joint-state-controller ros-noetic-effort-controllers ros-noetic-joint-trajectory-controller ros-noetic-slam-gmapping ros-noetic-hector-slam ros-noetic-map-server
 ```
 
 Clone this repository in the `src` folder of your catkin workspace:
@@ -73,6 +73,10 @@ The full list of transitions between states available is the following:
 * Key '2': Passive/Trotting to FixedStand
 * Key '3': Fixed stand to FreeStand
 * Key '4': FixedStand/FreeStand to Trotting
+* Key '5': FixedStand to MoveBase
+* Key '8': FixedStand to StepTest
+* Key '9': FixedStand to SwingTest
+* Key '0': FixedStand to BalanceTest
 
 # Gazebo Worlds
 
@@ -84,6 +88,53 @@ roslaunch unitree_gazebo robot_simulation.launch rname:=go1 wname:=office_small
 ```
 
 ![World loaded in Gazebo](./doc/unitree_go1_gazebo_world.png)
+
+# Mapping
+
+Start the simulation in Gazebo:
+```
+roslaunch unitree_gazebo robot_simulation.launch rname:=go1 wname:=office_small rviz:=false
+```
+
+Start the robot controller:
+```
+rosrun unitree_guide junior_ctrl
+```
+
+Start the mapping process with gmapping:
+```
+roslaunch unitree_navigation slam.launch rname:=go1 rviz:=true algorithm:=gmapping
+```
+Alternatively, you can start the mapping with hector:
+```
+roslaunch unitree_navigation slam.launch rname:=go1 rviz:=true algorithm:=hector
+```
+In the terminal of the robot controller, press the keys '2' and '4' to set the robot in trotting mode, then, move the robot around the environment to create the map.
+
+During the mapping process, Rviz should show something similar to the following screehshot:
+![Go1 mapping in Rviz](./doc/unitree_go1_mapping_rviz.png)
+
+Save the map:
+```
+rosrun map_server map_saver -f ~/catkin_ws/src/ros_unitree/unitree_guide/unitree_navigation/maps/office_small
+```
+
+# Navigation
+Start the simulation in Gazebo:
+```
+roslaunch unitree_gazebo robot_simulation.launch rname:=go1 wname:=office_small rviz:=false
+```
+
+Start the robot controller:
+```
+rosrun unitree_guide junior_ctrl
+```
+and press the keys '2' and '5' to activate the MoveBase mode.
+
+Start the navigation stack:
+```
+roslaunch unitree_navigation navigation.launch map_file:=/home/unitree/catkin_ws/src/ros_unitree/unitree_guide/unitree_navigation/maps/office_small
+```
 
 ---
 
