@@ -1,0 +1,45 @@
+<launch>
+    <arg name="rname" default="/"/>
+    <arg name="rviz"       default="true"/>
+    <arg name="base_frame" default="/base"/>
+    <arg name="odom_frame" default="/odom"/>
+    
+    <!-- <arg if="$(eval arg('rname') == '/')"  name="frame_prefix" value="" />
+    <arg unless="$(eval arg('rname') == '/')" name="frame_prefix" value="$(arg rname)/" /> -->
+
+    <!-- <group ns="$(arg rname)"> -->
+        <!-- Map server -->
+        <arg name="map_file" default="$(find unitree_navigation)/maps/office_small.yaml"/>
+        <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" >
+            <!-- <param name="frame_id" value="$(arg frame_prefix)map" /> -->
+            <param name="frame_id" value="map" />
+        </node>
+
+        <!-- Uncomment if you want to convert PointCloud2 data from the three depth cameras to LaserScan -->
+        <!-- <include file="$(find unitree_move_base)/launch/pointCloud2LaserScan.launch"/>  -->
+
+        <!-- AMCL used for localization -->
+        <include file="$(find unitree_navigation)/launch/navigation/amcl.launch">
+            <!-- <arg name="frame_prefix" value="$(arg frame_prefix)"/> -->
+            <arg name="base_frame" value="$(arg base_frame)"/>
+            <arg name="odom_frame" value="$(arg odom_frame)"/>
+            <arg name="scan" value="$(arg rname)_gazebo/scan"/>
+        </include>
+        
+        <!-- Calls navigation stack packages -->
+        <include file="$(find unitree_move_base)/launch/move_base.launch">
+            <!-- <arg name="frame_prefix" value="$(arg frame_prefix)"/> -->
+            <arg name="rname"   value="$(arg rname)"/>
+        </include>
+
+        <!-- <include file="$(find unitree_move_base)/launch/move_base.launch"/> -->
+
+        <!-- <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz"
+            args="-d $(find champ_navigation)/rviz/navigate.rviz -f $(arg frame_prefix)map"
+            output="screen"/> -->
+
+        <node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz"
+            args="-d $(find unitree_move_base)/rviz/move_base.rviz"/>
+
+    <!-- </group> -->
+</launch>

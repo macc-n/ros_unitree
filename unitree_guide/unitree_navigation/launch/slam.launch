@@ -1,0 +1,39 @@
+<launch>
+    <arg name="rname" default="/"/>
+    <arg name="rviz" default="true"/>
+    <arg name="algorithm" default="gmapping"/>
+    
+    <arg if="$(eval arg('rname') == '/')"  name="frame_prefix" value="" />
+    <arg unless="$(eval arg('rname') == '/')" name="frame_prefix" value="$(arg rname)/" />
+
+    <group if="$(eval algorithm == 'hector')">
+        <include file="$(find unitree_navigation)/launch/slam/hector_mapping.launch">
+            <arg name="base_frame" value="base"/>
+            <arg name="odom_frame" value="odom"/>
+            <arg name="scan_topic" value="$(arg rname)_gazebo/scan"/>
+        </include>    
+    </group>
+
+    <group if="$(eval algorithm == 'gmapping')">
+        <include file="$(find unitree_navigation)/launch/slam/gmapping.launch">
+            <!-- <arg name="frame_prefix" value="$(arg frame_prefix)"/> -->
+            <arg name="base_frame" value="base"/>
+            <arg name="odom_frame" value="odom"/>
+            <arg name="scan" value="$(arg rname)_gazebo/scan"/>
+        </include>
+
+        <!-- Calls navigation stack packages -->
+        <!-- <include file="$(find unitree_navigation)/launch/navigation/move_base.launch">
+            <arg name="frame_prefix" value="$(arg frame_prefix)"/> -->
+            <!-- NO <arg name="rname"   value="$(arg rname)"/> -->
+        <!-- </include> -->
+    </group>
+
+    <!-- <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz"
+        args="-d $(find unitree_navigation)/rviz/navigation.rviz -f $(arg frame_prefix)map"
+        output="screen"/> -->
+    <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz" 
+        args="-d $(find unitree_navigation)/rviz/slam.rviz"
+        output="screen"/>
+        
+</launch>
