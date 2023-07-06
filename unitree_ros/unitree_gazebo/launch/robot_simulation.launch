@@ -59,7 +59,7 @@
     </include>
 
     <!-- World frame -->
-    <node pkg="tf2_ros" type="static_transform_publisher" name="world_to_base" args="0.0 0.0 0.0 0.0 0.0 0.0 /world /base" />
+    <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="world_to_base" args="0.0 0.0 0.0 0.0 0.0 0.0 /world /base" /> -->
 
     <!-- Rviz -->
     <group if="$(eval rviz == 'true')">
