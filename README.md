@@ -133,8 +133,12 @@ and press the keys '2' and '5' to activate the MoveBase mode.
 
 Start the navigation stack:
 ```
-roslaunch unitree_navigation navigation.launch map_file:=/home/unitree/catkin_ws/src/ros_unitree/unitree_guide/unitree_navigation/maps/office_small
+roslaunch unitree_navigation navigation.launch rname:=go1 map_file:=/home/unitree/catkin_ws/src/ros_unitree/unitree_guide/unitree_navigation/maps/office_small.yaml
 ```
+
+In Rviz, first set the initial position of the robot with the "2D Pose Estimate" button. Next, set a navigation goal with the "2D Nav Goal" button.
+
+![Go1 navigation](./doc/unitree_go1_navigation.gif)
 
 ---
 
