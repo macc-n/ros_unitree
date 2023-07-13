@@ -62,7 +62,7 @@
     <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="world_to_base" args="0.0 0.0 0.0 0.0 0.0 0.0 /world /base" /> -->
 
     <!-- Rviz -->
-    <group if="$(eval rviz == 'true')">
+    <group if="$(eval arg('rviz') == true)">
         <include file="$(arg dollar)(find $(arg rname)_description)/launch/$(arg rname)_rviz_gazebo.launch">
             <arg name="user_debug" value="$(arg user_debug)"/>
         </include>
