@@ -140,6 +140,19 @@ In Rviz, first set the initial position of the robot with the "2D Pose Estimate"
 
 ![Go1 navigation](./doc/unitree_go1_navigation.gif)
 
+# Note
+If you are having problems with the movements of the robot and the node junior_ctrl logs the following error:
+```
+[ERROR] Function setProcessScheduler failed.
+```
+Yo should consider to edit the file `/etc/security/limits.conf` and add the following two lines:
+```
+<username> hard rtprio 99
+<username> soft rtprio 99
+```
+Replace `<username>` with your username.
+Save, close the file and reboot the system to apply the changes.
+
 ---
 
 # From Original Repository
